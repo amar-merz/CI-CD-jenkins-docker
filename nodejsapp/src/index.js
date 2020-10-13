@@ -1,26 +1,44 @@
-//import express from 'express';
-const express = require('express')
-const bodyParser = require('body-parser')
+import express from 'express';
+import Joi from 'joi'
+
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json())
+const courses =[
 
-const contact = {
- name: 'Ammar Merzougui',
- email: 'amm@er.com',
- phone: '210-123-333' 
-}
+	{id:1, name: 'course1'},	
+	{id:2, name: 'course2'},
+	{id:3, name: 'course3'}
 
-app.all('/contacts/',contactsController)
-app.get('/contacts/:id',contactsController)
+]
+app.get('/api/courses/:id',(req,res)=>{
 
-function contactsController(req,res){
-     
-	res.send(contact);
-        
-    
-}
+  const course = courses.find(c => c.id === parseInt(req.params.id));
+  if (!course) re.status(404).send('The course with a given ID not found');
+  res.send(course);
 
-app.listen(3000, () => console.log(`Listening on port 3000`));
+})
 
 
+app.post ('/api/courses',(req,res)=>{
 
+	const schema =Joi.object( { name: Joi.string().min(3).required()});
+	
+
+	const result = schema.validate(req.body);
+
+	if(result.error){
+	 res.status(400).send(result.error.message);
+	}
+   
+	const course = {
+	 id: courses.length +1,
+	 name:req.body.name
+	};
+
+	courses.push(course);
+	res.send(course);
+
+})
+const port = process.env.PORT || 3000;
+
+app.listen(port,()=>console.log(`Listening on port ${port}...`));

@@ -1,0 +1,18 @@
+---
+###########Confiure jenkins Server#####################3
+- hosts: jenkins-server
+  remote_user: ubuntu
+  become: yes
+  gather_facts: yes
+  roles:
+          - jenkins-role
+
+
+
+- hosts: nodejs-server
+  remote_user: adam
+  become: yes
+  
+  gather_facts: yes 
+  roles:
+          - docker-common

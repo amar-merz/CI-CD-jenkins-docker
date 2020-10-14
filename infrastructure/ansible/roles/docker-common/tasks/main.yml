@@ -1,0 +1,29 @@
+---
+# tasks file for docker-common
+#
+#
+- name: apt update
+  apt:
+          update_cache: yes
+
+- name: Install packages to allow apt to use repository over HTTPS
+  apt:
+      name: "{{item}}"
+      state: present
+  loop: "{{https_packages}}"
+ 
+- name: add docker apt key
+  apt_key:     
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+- name: add docker repository
+  apt_repository:
+          repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal  stable"
+          state: present
+
+- name: install docker
+  apt:
+          name: docker-ce
+          update_cache: yes
+          state: latest

@@ -1,2 +1,12 @@
-[jenknis-server]
+[jenkins-server]
 3.138.136.97
+
+[jenkins-server:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[nodejs-server]
+18.223.16.52
+
+[nodejs-server:vars]
+ansible_python_interpreter=/usr/bin/python3
+

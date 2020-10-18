@@ -9,4 +9,8 @@ ansible_python_interpreter=/usr/bin/python3
 
 [nodejs-server:vars]
 ansible_python_interpreter=/usr/bin/python3
+<<<<<<< HEAD
 ansible_become_pass=1qa
+=======
+
+>>>>>>> eccc5bb937f98c624d5ac4e7ce5c006132c1ae40

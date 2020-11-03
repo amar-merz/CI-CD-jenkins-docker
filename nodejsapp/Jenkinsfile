@@ -1,0 +1,13 @@
+pipeline{
+    agent {
+        none
+    }
+    stages{
+        dockerfile {
+            label 'build-slave'
+        }
+        stage('build'){
+            sh 'node --version'
+        }
+    }
+}

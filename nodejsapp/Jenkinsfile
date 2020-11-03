@@ -5,6 +5,7 @@ pipeline{
             agent {
                 dockerfile{
                 label 'build-slave'
+                dir 'nodejsapp'
                 }
             }
             steps{

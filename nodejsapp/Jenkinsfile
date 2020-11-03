@@ -1,12 +1,10 @@
 pipeline{
-    agent {
-        none
-    }
+    agent none
     stages{
-        dockerfile {
+        stage('build'){
+             dockerfile {
             label 'build-slave'
         }
-        stage('build'){
             sh 'node --version'
         }
     }

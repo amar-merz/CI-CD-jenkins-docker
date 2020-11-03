@@ -2,7 +2,8 @@ pipeline{
     agent none
     stages{
         stage('build'){
-            dockerfile {
+            agent {
+                dockerfile true
                 label 'build-slave'
             }
             steps{

@@ -6,7 +6,7 @@ pipeline{
                 dockerfile{
                 label 'build-slave'
                 dir 'nodejsapp'
-                args '-t adam/nodejsimg'
+                additionalBuildArgs '-t adam/nodejsimg'
                 }
             }
             steps{

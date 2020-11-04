@@ -4,9 +4,9 @@ pipeline{
         stage('build'){
             agent {
                 dockerfile{
-                image 'adam/nodejsimg'
                 label 'build-slave'
                 dir 'nodejsapp'
+                additionalBuildArgs '--tag adam/nodejsimg'
                 }
             }
             steps{

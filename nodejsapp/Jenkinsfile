@@ -2,17 +2,21 @@ pipeline{
     agent none
     stages{
         stage('build'){
-            agent {
-                dockerfile{
-                    environement{
-                      imageName = 'adam/nodejs'
-                    }
-                 label 'build-slave'
-                 dir 'nodejsapp'
-                }
+              
+            agent{
+                label 'build-slave'
             }
+           
             steps{
-                sh 'node --version'
+                 
+                script {
+                    def customImage = docker.build("my-image:${env.BUILD_ID}","./nodejsapp")
+                    customImage.inside{
+                        sh 'node --version' 
+                    }
+                
+                }
+               
             } 
          }
     }
